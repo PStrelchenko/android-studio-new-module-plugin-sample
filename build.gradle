@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.11'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+}
+
+group 'android-studio-new-module-plugin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version "191.8026.42"
+    type "IC"
+    plugins = [ "android", "Groovy", "org.jetbrains.kotlin:1.3.50-release-Studio3.5-1" ]
+}
+
+runIde {
+    ideaDirectory '/Applications/Android Studio.app/Contents'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+patchPluginXml {
+    changeNotes """
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}
